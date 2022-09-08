@@ -1,7 +1,5 @@
-import axios from 'axios'
 import {SIGNUP,LOGIN,UPDATE, APIRESPONSE,PASSWORDUPDATE} from '../Constances'
 import apiCall from '../ApiCall'
-
 
 
 // export const Signupfun = (payload) => async (dispatch) => {
@@ -40,14 +38,10 @@ export const Signupfun = (payload) => async (dispatch) => {
 }
 
 
-
-
-
 export const loginfun = (payload) => async (dispatch) => {
 
     try{
         let res = await apiCall('POST','/auth/login',payload)
-        console.log("res",res)
         let {token} =  res.data;
        localStorage.setItem("token",token);
        dispatch({ type: LOGIN,payload:res});
@@ -59,7 +53,6 @@ export const loginfun = (payload) => async (dispatch) => {
 }
 
 
-
 export const authuser = () => async (dispatch) => {
 
     try{
@@ -67,9 +60,11 @@ export const authuser = () => async (dispatch) => {
        dispatch({ type: LOGIN,payload:res});
     }
     catch(err){
+        dispatch({type:APIRESPONSE , payload:err})
         console.log(err, 'This is ERROR')
     }
 }
+
 
 export const updateProfile = (payload) => async (dispatch) => {
 
@@ -84,8 +79,6 @@ export const updateProfile = (payload) => async (dispatch) => {
 }
 
 
-
-
 export const PasswordUpdate = (payload) => async (dispatch) => {
 
     try{
@@ -97,6 +90,13 @@ export const PasswordUpdate = (payload) => async (dispatch) => {
         console.log(err, 'This is ERROR')
     }
 }
+
+
+
+export const restApiRes = () =>async dispatch => {
+  dispatch({type:APIRESPONSE,payload:{}})
+}
+
 
 
 

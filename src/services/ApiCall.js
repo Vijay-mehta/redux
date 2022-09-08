@@ -14,7 +14,6 @@ import axios from "axios"
             data:values
         }
         let res = await axios(apiData)
-        
         return res.data;
     } catch (error) {
         throw error.response.data

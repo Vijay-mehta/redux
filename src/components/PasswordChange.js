@@ -5,13 +5,17 @@ import Header from './Header'
 import { PasswordUpdate } from '../services/actions/Action'
 import { useDispatch} from 'react-redux'
 
-const PasswordChange = (props) => {
 
-  const dispatch= useDispatch()
+const PasswordChange = (props) => {
 
   
 
-    const {register,handleSubmit} =useForm('')
+  const dispatch= useDispatch()
+
+
+
+
+    const {register,handleSubmit,formState:{errors}} =useForm('')
 
 
 
@@ -38,6 +42,9 @@ const PasswordChange = (props) => {
         <Form.Control type="text" placeholder="Old Password"  name="old_pass"
         {...register("old_pass",{required:true})}
         />
+        {errors?.old_pass?.type === "required" &&(
+          <span>This field is required</span>
+        )}
       </Form.Group>
 
       <Form.Group className="mb-3" controlId="formBasicPassword">
@@ -45,12 +52,19 @@ const PasswordChange = (props) => {
         <Form.Control type="text" placeholder="New Password"  name="new_pass"
           {...register("new_pass",{required:true})}
         />
+        {errors?.new_pass?.type === "required" &&(
+          <span>This field is required</span>
+        )}
+
       </Form.Group>
       <Form.Group className="mb-3" controlId="formBasicPassword">
         <Form.Label>confirm Password</Form.Label>
         <Form.Control type="password" placeholder="New Password" name="con_pass"
          {...register("con_pass",{required:true})}
         />
+         {errors?.con_pass?.type === "required" &&(
+          <span>This field is required</span>
+        )}
       </Form.Group>
       <Button variant="primary" type="submit">
         Submit

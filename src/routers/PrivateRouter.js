@@ -9,7 +9,6 @@ const PrivateRouter = () => {
   return (
     <>
   
- 
 <Routes>
     <Route exact path="/" element={<Dashboard/>}/>
     <Route exact path="/dashboard" element={<Dashboard/>}/>

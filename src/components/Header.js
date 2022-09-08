@@ -6,8 +6,7 @@ import './style.css'
 
 
 
-const Header = (props) => {
-  // console.log(props.userData.name,"header")
+const Header = () => {
 
   const userData = useSelector(state=>state.Index.userData)
 
@@ -75,12 +74,9 @@ const Header = (props) => {
   )
 }
 
-// const mapStateToProps = (state) => ({
-//   userData: state.Index.userData
-// })
+
 
 export default Header
 
-// export default Header
 
 

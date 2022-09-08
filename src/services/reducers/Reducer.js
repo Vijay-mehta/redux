@@ -30,7 +30,7 @@ export default  (state=initialState,action)=>{
         case PASSWORDUPDATE: 
             return{
                 ...state,
-                // userData:action.payload.data,
+                 userData:action.payload.data,
                 apiRes:action.payload
             }
         case APIRESPONSE:
@@ -44,20 +44,6 @@ export default  (state=initialState,action)=>{
     }
 };
 
-// function userLogin(state=initialState,action){
-//     switch(action.type){
-//         case LOGIN:
-//             return{
-//                 ...state,
-//                 userData:action.payload
-//             }
-//             default:
-//                 return state
-//     }
-
-// }
-
-// export  {userLogin};
 
 
 

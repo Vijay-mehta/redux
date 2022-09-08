@@ -15,8 +15,7 @@ const PublicRouter = () => {
     <Route exact path="/" element={<Login/>}/>
     <Route exact path="/Login" element={<Login/>}/>
     <Route exact path="/signup" element={<Signup/>}/>
-    {/* <Route path="*" element={<Navigate replace to="/login"/>} /> */}
-
+    <Route exact path="*" element={<Navigate to="/login" replace />}/>
   </Routes>
       
     </ >

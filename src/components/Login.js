@@ -29,11 +29,14 @@ const Login = () => {
 
   return (
     <div className='mt-5'>
+
        <Form onSubmit={handleSubmit(loginData)}>
        <Container>
-       
+
       <Form.Group className="mb-3" controlId="formBasicEmail">
-        <Form.Label>Email </Form.Label>
+        <Form.Label>Email </Form.Label><br></br>
+        <span>{userError.message === "Authorization failed" ? userError.message : ''}</span>
+
         <Form.Control type="email" placeholder="Enter email" name="name"
         {...register("email",{required:true})}
         />
@@ -41,7 +44,6 @@ const Login = () => {
           <span>This field is required</span>
         )}
       {/* <span>{userError.message}</span>  */}
-      <span>{userError.message === "Authorization failed" ? userError.message : ''}</span>
  
       </Form.Group>
 

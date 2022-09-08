@@ -2,23 +2,24 @@ import React, { useEffect } from 'react'
 import { Form, Button, Container } from 'react-bootstrap'
 import { useForm } from 'react-hook-form'
 import { useDispatch, useSelector } from 'react-redux'
-import { Signupfun } from '../services/actions/Action'
+import { restApiRes, Signupfun } from '../services/actions/Action'
 import { useNavigate } from 'react-router-dom'
 import Header from './Header'
 
 
-const Signup = (props) => {
+const Signup = () => {
 
   const navigate = useNavigate()
   const dispatch = useDispatch()
 
   const apiRes = useSelector(state => state.Index.apiRes)
 
-  console.log(apiRes)
+
 
   useEffect(() => {
     console.log(apiRes.statusCode, "apiRes")
     if (apiRes.statusCode === 200) {
+      dispatch(restApiRes())
       navigate('/login')
     }
   }, [apiRes])
@@ -40,7 +41,7 @@ const Signup = (props) => {
       <Header />
       <Form onSubmit={handleSubmit(signupData1)} className='mt-5'>
         <Container>
-          <Form.Group className="mb-3" controlId="formBasicEmail">
+          <Form.Group className="mb-3" >
             <Form.Label>Name</Form.Label>
             <Form.Control type="text" placeholder=" Name" name="name"
               {...register("name", { required: true, pattern: /^[A-Za-z]{1,15}/, })}
@@ -54,8 +55,10 @@ const Signup = (props) => {
             )}
           </Form.Group>
 
-          <Form.Group className="mb-3" controlId="formBasicPassword">
-            <Form.Label>Eamil</Form.Label>
+          <Form.Group className="mb-3" >
+            <Form.Label>Eamil</Form.Label><br></br>
+            <span>{apiRes.message === "Email Allready taken" ? apiRes.message : ''}</span>
+
             <Form.Control type="email" placeholder=" Email" name="email"
               {...register("email", { required: true, pattern: /^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$/ })}
 
@@ -68,12 +71,13 @@ const Signup = (props) => {
               <span>This is not valid email</span>
             )}
             {/* <span>{apiRes.message}</span> */}
-            <span>{apiRes.message === "Email Allready taken" ? apiRes.message : ''}</span>
 
           </Form.Group>
 
-          <Form.Group className="mb-3" controlId="formBasicPassword">
-            <Form.Label>Phone</Form.Label>
+          <Form.Group className="mb-3" >
+            <Form.Label>Phone</Form.Label><br></br>
+            <span>{apiRes.message === "Phone Number Allready taken" ? apiRes.message : ''}</span>
+
             <Form.Control type="number" placeholder="Phone Nol" name="phone"
               {...register("phone", { required: true, pattern: /^((\\+91-?)|0)?[0-9]{10}$/, })}
             />
@@ -85,11 +89,10 @@ const Signup = (props) => {
               <span>10 digit is required</span>
             )}
             {/* <span>{apiRes.message}</span> */}
-            <span>{apiRes.message === "Phone Number Allready taken" ? apiRes.message : ''}</span>
 
           </Form.Group>
 
-          <Form.Group className="mb-3" controlId="formBasicPassword">
+          <Form.Group className="mb-3" >
             <Form.Label>password</Form.Label>
             <Form.Control type="password" placeholder="Password" name="password"
               {...register("password", { required: true })}
